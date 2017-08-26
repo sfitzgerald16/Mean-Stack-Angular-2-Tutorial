@@ -47,5 +47,6 @@ router.post('/register', (req, res) => {
     }
   }
 });
+
   return router;
 }
