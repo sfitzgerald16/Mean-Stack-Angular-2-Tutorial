@@ -54,30 +54,26 @@
       <ul class="nav nav-justified">
         <li><strong>Posted by: </strong>{{blog.createdBy}}</li>
         <li><strong>Date: </strong>{{blog.createdAt | date:'MMM dd, yyyy'}}</li>
-        <li *ngIf="username === blog.createdBy"><strong>Likes: </strong>{{blog.likes}}</li>
-        <li *ngIf="username === blog.createdBy"><strong>Disikes: </strong>{{blog.dislikes}}</li>
+        <li *ngIf="username === blog.createdBy"><strong>Likes: </strong>{{blog.likedBy.length}}</li>
+        <li *ngIf="username === blog.createdBy"><strong>Disikes: </strong>{{blog.dislikedBy.length}}</li>
         <a [routerLink]="['/edit-blog/', blog._id]" *ngIf="username === blog.createdBy"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
         <a [routerLink]="['/deleteBlog/', blog._id]" *ngIf="username === blog.createdBy"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
         <!-- Likes dropdown -->
         <div class="dropdown">
-          <button type="button" name="button" class="btn btn-sm btn-success" *ngIf="username !== blog.createdBy">
-            <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: 21
+          <button type="button" name="button" class="btn btn-sm btn-success" *ngIf="username !== blog.createdBy" (click)="likeBlog(blog._id)" [disabled]="blog.likedBy.indexOf(username) > -1">
+            <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: {{blog.likedBy.length}}
           </button>
           <div class="dropdown-content">
-            <a href="#">someone</a>
-            <a href="#">someone</a>
-            <a href="#">someone else</a>
+            <a [routerLink]="['/user/', liker]" *ngFor="let liker of blog.likedBy">{{liker}}</a>
           </div>
         </div>
         <!-- Dislikes dropdown -->
         <div class="dropdown">
-          <button type="button" name="button" class="btn btn-sm btn-warning" *ngIf="username !== blog.createdBy">
-            <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Disikes: 21
+          <button type="button" name="button" class="btn btn-sm btn-warning" *ngIf="username !== blog.createdBy" (click)="dislikeBlog(blog._id)" [disabled]="blog.dislikedBy.indexOf(username) > -1">
+            <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Disikes: {{blog.dislikedBy.length}}
           </button>
           <div class="dropdown-content">
-            <a href="#">someone</a>
-            <a href="#">someone</a>
-            <a href="#">someone else</a>
+            <a [routerLink]="['/user/', disliker]" *ngFor="let disliker of blog.dislikedBy">{{disliker}}</a>
           </div>
         </div>
       </ul>
