@@ -1441,7 +1441,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
-        this.domain = "http://localhost:8080/";
+        this.domain = "https://radiant-spire-32080.herokuapp.com";
     }
     AuthService.prototype.createAuthenticationHeaders = function () {
         this.loadToken();
