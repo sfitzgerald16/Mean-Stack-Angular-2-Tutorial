@@ -6,7 +6,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
-  domain = "https://radiant-spire-32080.herokuapp.com";
+  domain = "https://radiant-spire-32080.herokuapp.com/";
   authToken;
   user;
   options;
